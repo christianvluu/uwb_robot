@@ -17,8 +17,8 @@ class Simulator:
     UTM_ZONE_LETTER = "T"
     WHEELBASE = 1.17
     # Start positions for Outdoor track
-    START_LAT = 40.443024364623916
-    START_LONG = -79.9409643423245
+    START_LAT = 40.44196141873536
+    START_LONG = -79.94376678245533
     NOISE = True  # Noisy outputs for nav/odom?
 
     def __init__(self, heading: float):
@@ -50,8 +50,8 @@ class Simulator:
         )
 
         # Start position for Start of Course
-        self.e_utm = Simulator.UTM_EAST_ZERO + 60
-        self.n_utm = Simulator.UTM_NORTH_ZERO + 150
+        self.e_utm = 589576.85
+        self.n_utm = 4477347.74
 
         # Start position for End of Hill 2
         # self.e_utm = Simulator.UTM_EAST_ZERO - 3
@@ -67,7 +67,7 @@ class Simulator:
         # self.n_utm = utm_coords[1]
 
         self.heading = heading  # degrees
-        self.velocity = 15  # m/s
+        self.velocity = 5  # m/s
 
         self.steering_angle = 0  # degrees
 

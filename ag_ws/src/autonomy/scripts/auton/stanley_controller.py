@@ -110,7 +110,7 @@ class StanleyController(Controller):
         )
 
         steering_cmd = error_heading + cross_track_error
-        steering_cmd = np.clip(steering_cmd, -np.pi / 9, np.pi / 9)
+        # steering_cmd = np.clip(steering_cmd, -np.pi / 9, np.pi / 9)
 
         reference_position = trajectory.get_position_by_index(self.current_traj_index)
         reference_error = current_pose.convert_point_from_global_to_local_frame(

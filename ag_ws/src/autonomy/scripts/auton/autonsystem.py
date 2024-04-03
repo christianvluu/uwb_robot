@@ -15,7 +15,6 @@ from world import World
 from controller import Controller
 from pure_pursuit_controller import PurePursuitController
 from stanley_controller import StanleyController
-from model_predictive_controller import ModelPredictiveController
 from brake_controller import BrakeController
 # from model_predictive_controller import ModelPredictiveController
 from model_predictive_interpolation import ModelPredictiveController
@@ -157,7 +156,7 @@ if __name__ == "__main__":
     print("\n\nStarting Controller: " + str(arg_ctrl) + "\n\n")
     print("\n\nStarting at distance: " + str(arg_start_dist) + "\n\n")
 
-    trajectory = Trajectory("/rb_ws/src/buggy/paths/frew_parkinglot_1.json")
+    trajectory = Trajectory("/home/christianluu/Repos/uwb_robot/ag_ws/src/autonomy/paths/cfa_lawn.json")
     # calculate starting index
     start_index = trajectory.get_index_from_distance(start_dist)
 
@@ -168,8 +167,6 @@ if __name__ == "__main__":
         ctrller = StanleyController(start_index)
     elif (arg_ctrl == "pure_pursuit"):
         ctrller = PurePursuitController(start_index)
-    elif (arg_ctrl == "mpc"):
-        ctrller = ModelPredictiveController(start_index)
     if (ctrller == None):
         raise Exception("Invalid Controller Argument")
     
