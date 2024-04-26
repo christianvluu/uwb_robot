@@ -1,3 +1,13 @@
+"""
+This file is responsible for taking in inputs from the serial connection of the UWB tag.
+There are a total of three threads running simultaneously, each sharing data via a 
+queue. The first thread takes in data from the serial port. The second calculates the
+real location of the tag. The final thread (main thread) does the plotting.
+
+This is for Christian Luu's project in Special Topics: Robotics & AI for Agriculture
+during the Spring 2024 semester at Carnegie Mellon University.
+"""
+
 import numpy as np
 import serial
 import threading
@@ -25,11 +35,8 @@ class Localizer:
             # 3D
             self.ax = fig.add_subplot(111, projection='3d')
             
-
-
         threading.Thread(target=self.serialThread, daemon=True).start()
         threading.Thread(target=self.localizationThread, daemon=True).start()
-
 
         self.plot()
 
@@ -148,11 +155,9 @@ class Localizer:
 
 
 
-
-
 if __name__ == "__main__":
-    tag_port = "/dev/cu.usbserial-02619876"
-    anchor_names = ["1786", "1785", "1784"]
-    # X, Y, Z (fwd, side, height) #5.84
+    tag_port = "/dev/cu.usbserial-02619876" # set to the serial device of the tag
+    anchor_names = ["1786", "1785", "1784"] # the unique IDs of each UWB anchor
+    # X, Y, Z (fwd, side, height)
     anchor_locations = [[0, 0], [24.21, 0], [0, 32.51]]
     loc = Localizer(tag_port, anchor_names, anchor_locations)
